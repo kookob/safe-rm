@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if command-line arguments are "rm -rf /" or "rm -rf /*"
+if [ "$#" -eq 2 ] && [ "$0" = "/usr/local/bin/saferm" ] && [ "$1" = "-rf" ] && ( [ "$2" = "/" ] || [ "$2" = "/safermTestDir" ] ); then
+    # Prompt the user for confirmation
+    echo "Danger: Are you sure you want to delete everything? (yes/no): "
+    read confirmation
+
+    # Check the user's input
+    if [ "$confirmation" == "yes" ]; then
+        # If the user enters "yes," execute the system's rm command
+        /bin/rm "$@"
+    else
+        # If the user enters anything else or "no," cancel the deletion operation
+        echo "Deletion canceled."
+    fi
+else
+    # If command-line arguments do not match "rm -rf /" or "rm -rf /*," execute the system's rm command directly
+    /bin/rm "$@"
+fi
