@@ -61,7 +61,6 @@ if [ "$#" -ge 2 ] && [ "$0" = "/usr/local/bin/saferm" ] && [ "$1" = "-rf" ]; the
         echo "Deletion canceled."
       fi
     else
-      # /bin/rm "$@"
-      echo "test"
+      /bin/rm "$@"
     fi
 fi
