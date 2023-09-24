@@ -6,7 +6,7 @@ SafeRM is a custom shell script that provides an extra layer of protection when 
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Supported Scenarios](#scenarios)
+- [Supported Scenarios](#supported-scenarios)
 - [License](#license)
 
 ## Installation
