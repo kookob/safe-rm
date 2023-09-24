@@ -6,6 +6,7 @@ SafeRM is a custom shell script that provides an extra layer of protection when 
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Supported Scenarios](#scenarios)
 - [License](#license)
 
 ## Installation
@@ -19,17 +20,20 @@ To use SafeRM, follow these installation steps:
 4. `source ~/.bashrc`
 
 ## Usage
-1. Create the directory "/safermTestDir" for verification:  
-`mkdir /safermTestDir`
-2. Verify the `rm` command:  
-`rm -rf /safermTestDir`  
+### Verify the `saferm` command:  
+`rm -rf safermTest`  
 If you see the following content, it means `rm -rf /` to prevent accidental deletion has taken effect.
    ```shell
    Danger: Are you sure you want to delete everything? (yes/no): 
    no
    Deletion canceled.
    ```
-3. Finish
+
+## Supported Scenarios
+- rm -rf /
+- rm -rf /*
+- rm -rf * (root directory)
+- rm -rf ./* (root directory)
 
 ## License
 MIT

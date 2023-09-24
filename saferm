@@ -1,7 +1,51 @@
 #!/bin/bash
 
+# Check if it includes deleting the root directory
+current_dir="$(pwd)"
+contains_root_dir=false
+for ((i = 2; i <= $#; i++)); do
+  arg="${!i}"
+  if (
+  ( [ "$current_dir" = "/" ] &&
+    ( [ "$arg" = "bin" ] || [ "$arg" = "./bin" ]
+      [ "$arg" = "boot" ] || [ "$arg" = "./boot" ]
+      [ "$arg" = "dev" ] || [ "$arg" = "./dev" ]
+      [ "$arg" = "etc" ] || [ "$arg" = "./etc" ]
+      [ "$arg" = "lib" ] || [ "$arg" = "./lib" ]
+      [ "$arg" = "lib64" ] || [ "$arg" = "./lib64" ]
+      [ "$arg" = "proc" ] || [ "$arg" = "./proc" ]
+      [ "$arg" = "root" ] || [ "$arg" = "./root" ]
+      [ "$arg" = "run" ] || [ "$arg" = "./run" ]
+      [ "$arg" = "sbin" ] || [ "$arg" = "./sbin" ]
+      [ "$arg" = "sys" ] || [ "$arg" = "./sys" ]
+      [ "$arg" = "usr" ] || [ "$arg" = "./usr" ]
+      [ "$arg" = "var" ] || [ "$arg" = "./var" ] )
+  ) ||
+  ( [ "$arg" = "/bin" ] ||
+    [ "$arg" = "/boot" ] ||
+    [ "$arg" = "/dev" ] ||
+    [ "$arg" = "/etc" ] ||
+    [ "$arg" = "/lib" ] ||
+    [ "$arg" = "/lib64" ] ||
+    [ "$arg" = "/proc" ] ||
+    [ "$arg" = "/root" ] ||
+    [ "$arg" = "/run" ] ||
+    [ "$arg" = "/sbin" ] ||
+    [ "$arg" = "/sys" ] ||
+    [ "$arg" = "/usr" ] ||
+    [ "$arg" = "/var" ] )
+  ); then
+    contains_root_dir=true
+  fi
+done
+
 # Check if command-line arguments are "rm -rf /" or "rm -rf /*"
-if [ "$#" -eq 2 ] && [ "$0" = "/usr/local/bin/saferm" ] && [ "$1" = "-rf" ] && ( [ "$2" = "/" ] || [ "$2" = "/safermTestDir" ] ); then
+if (
+  [ "$#" -ge 2 ] &&
+  [ "$0" = "/usr/local/bin/saferm" ] &&
+  [ "$1" = "-rf" ] &&
+  ( [ "$2" = "/" ] || [ "$contains_root_dir"  = "true" ] || [ "$2" = "safermTest" ] )
+  ); then
     # Prompt the user for confirmation
     echo "Danger: Are you sure you want to delete everything? (yes/no): "
     read confirmation
