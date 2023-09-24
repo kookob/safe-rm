@@ -29,18 +29,17 @@ wget -P /usr/local/bin https://raw.githubusercontent.com/kookob/safe-rm/master/s
 
 ## 使用
 #### 验证`saferm`命令：  
-   `rm -rf safermTest`  
-   如果您看到以下内容，这意味着`rm -rf /`防止意外删除命令已生效。
+   `alias rm`  
+   如果您看到以下内容，这意味着`rm -rf`防止意外删除命令已生效。
    ```shell
-   Danger: Are you sure you want to delete everything? (yes/no): 
-   no
-   Deletion canceled.
+   alias rm='/usr/local/bin/saferm'
    ```
-## Scenarios
+## 支持场景
 - rm -rf /
 - rm -rf /*
 - rm -rf * (根目录下)
 - rm -rf ./* (根目录下)
+- 根目录下其他系统目录的删除
 
 ## 许可
 MIT

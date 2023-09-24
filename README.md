@@ -28,12 +28,10 @@ wget -P /usr/local/bin https://raw.githubusercontent.com/kookob/safe-rm/master/s
 
 ## Usage
 #### Verify the `saferm` command:  
-`rm -rf safermTest`  
+`alias rm`  
 If you see the following content, it means `rm -rf /` to prevent accidental deletion has taken effect.
    ```shell
-   Danger: Are you sure you want to delete everything? (yes/no): 
-   no
-   Deletion canceled.
+   alias rm='/usr/local/bin/saferm'
    ```
 
 ## Supported Scenarios
@@ -41,6 +39,8 @@ If you see the following content, it means `rm -rf /` to prevent accidental dele
 - rm -rf /*
 - rm -rf * (root directory)
 - rm -rf ./* (root directory)
+- rm -rf /bin
+- Other root directory scenarios, and so on.
 
 ## License
 MIT
